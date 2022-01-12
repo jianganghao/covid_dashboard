@@ -70,7 +70,8 @@ date_map= st.slider("Choose a date",date_min, date_max, value=default_starting_d
 df_state_map = df_state.query('date == @date_map')
 color_high = df_state_map.loc[:,col_name].max()
 color_low = df_state_map.loc[:,col_name].min()
-fig_map = px.choropleth_mapbox(df_state_map, geojson=state_json, locations='fips', color=col_name, color_continuous_scale="Viridis", range_color=(color_low, color_high),mapbox_style="carto-positron", zoom=2.8, center = {"lat": 37.0902, "lon": -95.7129},opacity=1,hover_name='state')
+#fig_map = px.choropleth_mapbox(df_state_map, geojson=state_json, locations='fips', color=col_name, color_continuous_scale="Viridis", range_color=(color_low, color_high),mapbox_style="carto-positron", zoom=2.8, center = {"lat": 37.0902, "lon": -95.7129},opacity=1,hover_name='state')
+fig_map = px.choropleth(df_state_map, geojson=state_json, locations='fips', color=col_name, color_continuous_scale="Viridis", scope="usa",range_color=(color_low, color_high), center = {"lat": 37.0902, "lon": -95.7129},hover_name='state')
 
 fig_map.update_layout(width=700,height=400,margin={"r":0,"t":0,"l":0,"b":0})
 

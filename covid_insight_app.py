@@ -107,9 +107,9 @@ df_state_new['fips'] = df_state_new.state.replace(state_fips_dict).astype('str')
 date_map= st.slider("Choose a date",date_min, date_max, value=default_starting_date,key='date_map')
 
 if data_type == "Confirmed Cases":
-    fig_map = px.choropleth_mapbox(df_state_new.query('date == @date_map'), geojson=state_json, locations='fips', color='acceleration', color_continuous_scale="Viridis", range_color=(-1000, 1000),mapbox_style="carto-positron", zoom=2.8, center = {"lat": 37.0902, "lon": -95.7129},opacity=1,hover_name='state')
+    fig_map = px.choropleth(df_state_new.query('date == @date_map'), geojson=state_json, locations='fips', color='acceleration', color_continuous_scale="Viridis", range_color=(-1000, 1000),scope="usa", center = {"lat": 37.0902, "lon": -95.7129},hover_name='state')
 else:
-    fig_map = px.choropleth_mapbox(df_state_new.query('date == @date_map'), geojson=state_json, locations='fips', color='acceleration', color_continuous_scale="RdBu_r", range_color=(-50, 50),mapbox_style="carto-positron", zoom=2.8, center = {"lat": 37.0902, "lon": -95.7129},opacity=1,hover_name='state')
+    fig_map = px.choropleth(df_state_new.query('date == @date_map'), geojson=state_json, locations='fips', color='acceleration', color_continuous_scale="RdBu_r", range_color=(-50, 50),scope="usa", center = {"lat": 37.0902, "lon": -95.7129},hover_name='state')
     
 
 fig_map.update_layout(width=700,height=400,margin={"r":0,"t":0,"l":0,"b":0})
